@@ -11,6 +11,23 @@
 (e/def messages)
 (e/def user)
 
+#_(e/defn SignOut []
+  (dom/div
+   (dom/text "Signed in as " (e/server (:user/email user)) ". ")
+   (dom/form
+    (dom/props {:method "post"
+                :action "/auth/signout"
+                :class "inline"
+                :style {:margin-bottom 0}})
+    (dom/input
+     (dom/props {:type "hidden"
+                 :name "__anti-forgery-token"
+                 :value (e/server (:anti-forgery-token e/*http-request*))}))
+    (dom/button
+     (dom/props {:class "text-blue-500 hover:text-blue-800"
+                 :type "submit"})
+     (dom/text "Sign out")))))
+
 (e/defn SignOut []
   #electric-hiccup
    [:div
@@ -18,12 +35,12 @@
     [:form {:method "post"
             :action "/auth/signout"
             :class "inline"
-            :style {:margin-bottom 0}}]
-    [:input {:type "hidden"
-             :name "__anti-forgery-token"
-             :value (e/server (:anti-forgery-token e/*http-request*))}]
-    [:button {:class "text-blue-500 hover:text-blue-800"
-              :type :submit} "Sign out"]])
+            :style {:margin-bottom 0}} 
+     [:input {:type "hidden"
+              :name "__anti-forgery-token"
+              :value (e/server (:anti-forgery-token e/*http-request*))}]
+     [:button {:class "text-blue-500 hover:text-blue-800"
+               :type :submit} "Sign out"]]])
 
 (e/defn FooForm []
   #electric-hiccup
