@@ -3,30 +3,13 @@
                       [com.biffweb.examples.electric.middleware :as mid]
                       [com.biffweb.examples.electric.settings :as settings]
                       [com.biffweb.examples.electric.signals :as sig]
-                      [com.biffweb.examples.electric.ui :as ui]])
-            [electric-hiccup.reader]
+                      [com.biffweb.examples.electric.ui :as ui]]) 
             [hyperfiddle.electric :as e]
-            [hyperfiddle.electric-dom2 :as dom]))
+            [hyperfiddle.electric-dom2 :as dom]
+            [electric-hiccup.reader]))
 
 (e/def messages)
 (e/def user)
-
-#_(e/defn SignOut []
-  (dom/div
-   (dom/text "Signed in as " (e/server (:user/email user)) ". ")
-   (dom/form
-    (dom/props {:method "post"
-                :action "/auth/signout"
-                :class "inline"
-                :style {:margin-bottom 0}})
-    (dom/input
-     (dom/props {:type "hidden"
-                 :name "__anti-forgery-token"
-                 :value (e/server (:anti-forgery-token e/*http-request*))}))
-    (dom/button
-     (dom/props {:class "text-blue-500 hover:text-blue-800"
-                 :type "submit"})
-     (dom/text "Sign out")))))
 
 (e/defn SignOut []
   #electric-hiccup
@@ -35,7 +18,7 @@
     [:form {:method "post"
             :action "/auth/signout"
             :class "inline"
-            :style {:margin-bottom 0}} 
+            :style {:margin-bottom 0}}
      [:input {:type "hidden"
               :name "__anti-forgery-token"
               :value (e/server (:anti-forgery-token e/*http-request*))}]
@@ -99,16 +82,8 @@
      "This demonstrates updating a value with Electric."]])
 
 (e/defn Message [{:msg/keys [text sent-at]}]
-  (dom/div
-   (dom/props {:class "mt-3"})
-   (dom/div
-    (dom/props {:class "text-gray-600"})
-    (dom/text sent-at))
-   (dom/div (dom/text text))))
-
-(e/defn Message [{:msg/keys [text sent-at]}]
   #electric-hiccup
-   [:div.mt-3 
+   [:div.mt-3
     [:div.text-gray-600 (dom/text sent-at)]
     [:div (dom/text text)]])
 
