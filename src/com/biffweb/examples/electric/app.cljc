@@ -99,10 +99,18 @@
      "This demonstrates updating a value with Electric."]])
 
 (e/defn Message [{:msg/keys [text sent-at]}]
+  (dom/div
+   (dom/props {:class "mt-3"})
+   (dom/div
+    (dom/props {:class "text-gray-600"})
+    (dom/text sent-at))
+   (dom/div (dom/text text))))
+
+(e/defn Message [{:msg/keys [text sent-at]}]
   #electric-hiccup
-   [:div.mt-3]
-  [:div.text-gray-600 (dom/text sent-at)]
-  [:div (dom/text text)])
+   [:div.mt-3 
+    [:div.text-gray-600 (dom/text sent-at)]
+    [:div (dom/text text)]])
 
 (e/defn Chat []
   (let [messages (e/server (vec (for [m messages]
