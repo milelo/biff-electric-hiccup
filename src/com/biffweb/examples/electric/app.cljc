@@ -3,7 +3,7 @@
                       [com.biffweb.examples.electric.middleware :as mid]
                       [com.biffweb.examples.electric.settings :as settings]
                       [com.biffweb.examples.electric.signals :as sig]
-                      [com.biffweb.examples.electric.ui :as ui]]) 
+                      [com.biffweb.examples.electric.ui :as ui]])
             [hyperfiddle.electric :as e]
             [hyperfiddle.electric-dom2 :as dom]
             [electric-hiccup.reader]))
@@ -129,14 +129,15 @@
    (binding [messages (new (sig/recent-messages e/*http-request*))
              user (new (sig/user e/*http-request*))]
      (e/client
-      [:div
-       (SignOut.)
-       [:div.h-6]
-       (FooForm.)
-       [:div.h-6]
-       (BarForm.)
-       [:div.h-6]
-       (Chat.)]))))
+      #electric-hiccup
+       [:div
+        (SignOut.)
+        [:div.h-6]
+        (FooForm.)
+        [:div.h-6]
+        (BarForm.)
+        [:div.h-6]
+        (Chat.)]))))
 
 #?(:cljs
    (do
