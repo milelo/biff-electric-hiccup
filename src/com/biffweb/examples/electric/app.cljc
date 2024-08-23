@@ -22,8 +22,10 @@
      [:input {:type "hidden"
               :name "__anti-forgery-token"
               :value (e/server (:anti-forgery-token e/*http-request*))}]
-     [:button {:class "text-blue-500 hover:text-blue-800"
-               :type :submit} "Sign out"]]])
+     #_[:button {:class "text-blue-500 hover:text-blue-800"
+               :type :submit} "Sign out"]
+     [:button.text-blue-500.hover:text-blue-800 ;mid keyword ":" is accepted
+      {:type :submit} "Sign out"]]])
 
 (e/defn FooForm []
   #electric-hiccup
@@ -33,7 +35,7 @@
     [:input {:type "hidden"
              :name "__anti-forgery-token"
              :value (e/server (:anti-forgery-token e/*http-request*))}]
-    [:label {:for "foo" :class "block"} "Foo: "
+    [:label.block {:for "foo"} "Foo: "
      [:span.font-mono
       (dom/text (e/server (pr-str (:user/foo user))))]]
     [:div.h-1]
