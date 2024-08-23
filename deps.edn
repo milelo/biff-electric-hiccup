@@ -9,6 +9,11 @@
 
         binaryage/devtools {:mvn/version "1.0.6"}
         thheller/shadow-cljs {:mvn/version "2.20.1"}
-        milelo/electric-hiccup {:git/url "https://github.com/milelo/electric-hiccup" 
-                                :git/tag "v0.1.0-alpha"
-                                :git/sha "18d05d7"}}}
+
+        milelo/electric-hiccup {:git/url "https://github.com/milelo/electric-hiccup"
+                                :git/tag "v0.1.1-alpha"
+                                :git/sha "28573b8"}
+       ;;  milelo/electric-hiccup {:git/url "https://github.com/milelo/electric-hiccup"
+       ;;                          :git/sha "53085504cd7ee631713e12f5684cdf6f77505c77"}
+       ;;  ;
+        }}

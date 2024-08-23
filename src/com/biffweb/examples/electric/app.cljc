@@ -15,11 +15,11 @@
   #electric-hiccup
    [:div
     (dom/text "Signed in as " (e/server (:user/email user)) ". ")
-    [:form {:method "post"
+    [:form {:method :post
             :action "/auth/signout"
-            :class "inline"
+            :class :inline
             :style {:margin-bottom 0}}
-     [:input {:type "hidden"
+     [:input {:type :hidden
               :name "__anti-forgery-token"
               :value (e/server (:anti-forgery-token e/*http-request*))}]
      #_[:button {:class "text-blue-500 hover:text-blue-800"
@@ -29,7 +29,7 @@
 
 (e/defn FooForm []
   #electric-hiccup
-   [:form.inline {:method "post"
+   [:form.inline {:method :post
                   :action "/app/set-foo"
                   :style {:margin-bottom 0}}
     [:input {:type "hidden"
@@ -40,7 +40,7 @@
       (dom/text (e/server (pr-str (:user/foo user))))]]
     [:div.h-1]
     [:div.flex
-     [:input {:class [:w-full]
+     [:input {:class :w-full
               :id :foo
               :type :text
               :name :foo
@@ -98,7 +98,7 @@
      [:div
       [:label.block  {:for :message} "Write a message"]
       [:div.h-1]
-      [:textarea {:class [:w-full]
+      [:textarea {:class :w-full
                   :id :message
                   :type :text
                   :value text}
