@@ -40,10 +40,10 @@
       (dom/text (e/server (pr-str (:user/foo user))))]]
     [:div.h-1]
     [:div.flex
-     [:input {:class "w-full"
-              :id "foo"
-              :type "text"
-              :name "foo"
+     [:input {:class [:w-full]
+              :id :foo
+              :type :text
+              :name :foo
               :value (e/server (:user/foo user))}]
      [:div.w-3]
      [:button.btn {:type :Submit} "Update"]]
@@ -98,9 +98,9 @@
      [:div
       [:label.block  {:for :message} "Write a message"]
       [:div.h-1]
-      [:textarea {:class "w-full"
-                  :id "message"
-                  :type "text"
+      [:textarea {:class [:w-full]
+                  :id :message
+                  :type :text
                   :value text}
        (dom/on "keyup" (e/fn [e]
                          (reset! !text (-> e .-target .-value))))]
