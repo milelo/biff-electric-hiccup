@@ -11,7 +11,7 @@
         thheller/shadow-cljs {:mvn/version "2.20.1"}
 
         milelo/electric-hiccup {:git/url "https://github.com/milelo/electric-hiccup"
-                                :git/tag "v0.2.0-alpha"
-                                :git/sha "537ec9d"}
+                                :git/tag "v0.2.1-alpha"
+                                :git/sha "78fee86"}
         ;
         }}
