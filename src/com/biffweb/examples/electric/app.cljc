@@ -22,9 +22,7 @@
      [:input {:type :hidden
               :name "__anti-forgery-token"
               :value (e/server (:anti-forgery-token e/*http-request*))}]
-     #_[:button {:class "text-blue-500 hover:text-blue-800"
-               :type :submit} "Sign out"]
-     [:button.text-blue-500.hover:text-blue-800 ;mid keyword ":" is accepted
+     [:button.text-blue-500.hover:text-blue-800 ;mid keyword ":" is ok
       {:type :submit} "Sign out"]]])
 
 (e/defn FooForm []
@@ -38,14 +36,14 @@
     [:label.block {:for "foo"} "Foo: "
      [:span.font-mono
       (dom/text (e/server (pr-str (:user/foo user))))]]
-    [:div.h-1]
+    [:.h-1]
     [:div.flex
      [:input {:class :w-full
               :id :foo
               :type :text
               :name :foo
               :value (e/server (:user/foo user))}]
-     [:div.w-3]
+     [:.w-3]
      [:button.btn {:type :Submit} "Update"]]
     [:div.h-1]
     [:div.text-sm.text-gray-600
@@ -65,27 +63,27 @@
     [:label.block {:for :bar} "Bar: "
      [:span.font-mono
       (dom/text (e/server (pr-str (:user/bar user))))]]
-    [:div.h-1]
+    [:.h-1]
     (let [bar (e/server (:user/bar user))
-          text (atom bar)]
+          !text (atom bar)]
       #electric-hiccup
        [:div.flex
         [:input#bar.w-full {:type :text :value bar}
          (dom/on "keyup" (e/fn [e]
-                           (reset! text (-> e .-target .-value))))
+                           (reset! !text (-> e .-target .-value))))
          (dom/on "keydown" (e/fn [e]
                              (when (= "Enter" (.-key e))
-                               (SetBar. (or @text "")))))]
-        [:div.w-3]
+                               (SetBar. (or @!text "")))))]
+        [:.w-3]
         [:button.btn {:type :Submit} "Update"
          (dom/on "click" (e/fn [_e]
-                           (SetBar. (or @text ""))))]])
+                           (SetBar. (or @!text ""))))]])
     [:div.text-sm.text-gray-600
      "This demonstrates updating a value with Electric."]])
 
 (e/defn Message [{:msg/keys [text sent-at]}]
   #electric-hiccup
-   [:div.mt-3
+   [:.mt-3
     [:div.text-gray-600 (dom/text sent-at)]
     [:div (dom/text text)]])
 
@@ -96,20 +94,21 @@
         text (e/watch !text)]
     #electric-hiccup
      [:div
-      [:label.block  {:for :message} "Write a message"]
-      [:div.h-1]
+      [:label.block {:for :message} "Write a message"]
+      [:.h-1]
       [:textarea {:class :w-full
                   :id :message
                   :type :text
                   :value text}
        (dom/on "keyup" (e/fn [e]
                          (reset! !text (-> e .-target .-value))))]
-      [:div.h-1]
-      [:div.text-sm.text-gray-600 "Sign in with an incognito window to have a conversation with yourself."]
-      [:div.h-2]
+      [:.h-1]
+      [:.text-sm.text-gray-600
+       "Sign in with an incognito window to have a conversation with yourself."]
+      [:.h-2]
       [:div
        [:button.btn "Send message"
-        (dom/on "click" (e/fn [e]
+        (dom/on "click" (e/fn [_e]
                           (when (not-empty text)
                             (e/server
                              (biff/submit-tx e/*http-request*
@@ -118,7 +117,7 @@
                                                :msg/text text
                                                :msg/sent-at :db/now}]))
                             (reset! !text ""))))]]
-      [:div.h-6]
+      [:.h-6]
       [:div (dom/text
              (if (empty? messages)
                "No messages yet."
@@ -134,11 +133,11 @@
       #electric-hiccup
        [:div
         (SignOut.)
-        [:div.h-6]
+        [:.h-6] ;tag defaults to div
         (FooForm.)
-        [:div.h-6]
+        [:.h-6]
         (BarForm.)
-        [:div.h-6]
+        [:.h-6]
         (Chat.)]))))
 
 #?(:cljs
