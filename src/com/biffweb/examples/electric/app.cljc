@@ -6,6 +6,7 @@
                       [com.biffweb.examples.electric.ui :as ui]])
             [hyperfiddle.electric :as e]
             [hyperfiddle.electric-dom2 :as dom]
+            [hyperfiddle.electric-svg :as svg]
             [electric-hiccup.reader]))
 
 (e/def messages)
@@ -74,11 +75,11 @@
          (dom/on "keydown" (e/fn [e]
                              (when (= "Enter" (.-key e))
                                (SetBar. (or @!text "")))))]
-        [:.w-3]
+        [:div.w-3]
         [:button.btn {:type :Submit} "Update"
          (dom/on "click" (e/fn [_e]
                            (SetBar. (or @!text ""))))]])
-    [:div.text-sm.text-gray-600
+    [:.text-sm.text-gray-600
      "This demonstrates updating a value with Electric."]])
 
 (e/defn Message [{:msg/keys [text sent-at]}]
@@ -125,6 +126,35 @@
       [:div (e/for-by :xt/id [msg messages]
                       (Message. msg))]]))
 
+(defn wave [time]
+  (Math/cos (/ (* (mod (Math/round (/ time 10)) 360) Math/PI) 180)))
+
+(e/defn SVG []
+  (e/client
+   (let [offset (* 3 (wave e/system-time-ms))] ; js animation clock
+     #electric-hiccup
+      [:div
+       [:dom/div.text-gray-600
+        "electric-hiccup supports other namespaces:"]
+      ;to use other namespaces, 'require the namespace and prefix the tag with its alias
+       [:svg/svg {:viewBox "0 0 300 100"}
+        [:svg/circle {:cx 50 :cy 50 :r (+ 30 offset)
+                      :style {:fill "#af7ac5 "}}]
+        [:svg/g {:transform
+                 (str "translate(105,20) rotate(" (* 3 offset) ")")}
+         [:svg/polygon {:points "30,0 0,60 60,60"
+                        :style {:fill "#5499c7"}}]]
+        [:svg/rect {:x 200 :y 20 :width (+ 60 offset) :height (+ 60 offset)
+                    :style {:fill "#45b39d"}}]]
+       [:.text-sm.text-gray-600
+        "SVG demo from: " [:span [:a {:href "https://github.com/hyperfiddle/electric-fiddle/blob/main/src/electric_tutorial/demo_svg.cljc"
+                                     :target "_blank"} "electric-fiddle"]]]])))
+
+(defn get-classes [x]
+  (case x
+    :a :v.f
+    :b :z.y))
+
 (e/defn App []
   (e/server
    (binding [messages (new (sig/recent-messages e/*http-request*))
@@ -138,7 +168,9 @@
         [:.h-6]
         (BarForm.)
         [:.h-6]
-        (Chat.)]))))
+        (Chat.)
+        [:.h-6]
+        (SVG.)]))))
 
 #?(:cljs
    (do
