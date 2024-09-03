@@ -38,7 +38,7 @@
      [:span.font-mono
       (dom/text (e/server (pr-str (:user/foo user))))]]
     [:.h-1]
-    [:div.flex
+    [:.flex
      [:input {:class :w-full
               :id :foo
               :type :text
@@ -46,8 +46,8 @@
               :value (e/server (:user/foo user))}]
      [:.w-3]
      [:button.btn {:type :Submit} "Update"]]
-    [:div.h-1]
-    [:div.text-sm.text-gray-600
+    [:.h-1]
+    [:.text-sm.text-gray-600
      "This demonstrates updating a value with a plain old form."]])
 
 (e/defn SetBar [text]
@@ -68,14 +68,14 @@
     (let [bar (e/server (:user/bar user))
           !text (atom bar)]
       #electric-hiccup
-       [:div.flex
+       [:.flex
         [:input#bar.w-full {:type :text :value bar}
          (dom/on "keyup" (e/fn [e]
                            (reset! !text (-> e .-target .-value))))
          (dom/on "keydown" (e/fn [e]
                              (when (= "Enter" (.-key e))
                                (SetBar. (or @!text "")))))]
-        [:div.w-3]
+        [:.w-3]
         [:button.btn {:type :Submit} "Update"
          (dom/on "click" (e/fn [_e]
                            (SetBar. (or @!text ""))))]])
@@ -85,7 +85,7 @@
 (e/defn Message [{:msg/keys [text sent-at]}]
   #electric-hiccup
    [:.mt-3
-    [:div.text-gray-600 (dom/text sent-at)]
+    [:.text-gray-600 (dom/text sent-at)]
     [:div (dom/text text)]])
 
 (e/defn Chat []
@@ -149,11 +149,6 @@
        [:.text-sm.text-gray-600
         "SVG demo from: " [:span [:a {:href "https://github.com/hyperfiddle/electric-fiddle/blob/main/src/electric_tutorial/demo_svg.cljc"
                                      :target "_blank"} "electric-fiddle"]]]])))
-
-(defn get-classes [x]
-  (case x
-    :a :v.f
-    :b :z.y))
 
 (e/defn App []
   (e/server
