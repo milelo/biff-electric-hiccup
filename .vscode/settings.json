@@ -1,0 +1,14 @@
+{
+  "tailwindCSS.includeLanguages": {
+    "clojure": "",
+    "clojurescript": ""
+  },
+  "tailwindCSS.emmetCompletions": true,
+  "tailwindCSS.validate": true,
+  "tailwindCSS.experimental.classRegex": [
+    [
+      "\\[:[^.\\s]*((?:\\.[^.\\s\\]]*)+)[\\s\\]]",
+      "\\.([^.]*)"
+    ]
+  ],
+}
