@@ -5,7 +5,7 @@ Example of using [Electric](https://github.com/hyperfiddle/electric) with Biff.
 This fork has been modified to use [electric-hiccup]. See [app.cljc].
 
 ### HTML Styling
-This project uses [tailwindcss] for HTML formatting in [app.cljc].
+This project uses [tailwindcss] for HTML styling in [app.cljc].
 I've included [settings](/.vscode/settings.json) for the [Tailwind CSS IntelliSense] plugin to provide class autocomplete and tooltip css definitions for electric-hiccup. Install the plugin to enable the features.
 
 Other implementations of [app.cljc] for comparison:
