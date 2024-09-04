@@ -6,7 +6,7 @@ This fork has been modified to use [electric-hiccup]. See [app.cljc].
 
 ### HTML Styling
 This project uses [tailwindcss] for HTML styling in [app.cljc].
-I've included [settings](/.vscode/settings.json) for the [Tailwind CSS IntelliSense] plugin to provide class autocomplete and tooltip css definitions for electric-hiccup. Install the plugin to enable the features.
+I've included [settings](/.vscode/settings.json) for the [Tailwind CSS IntelliSense] plugin for VSCode to provide class autocomplete and tooltip css definitions for electric-hiccup. If you are using VSCode install the plugin to enable the features.
 
 Other implementations of [app.cljc] for comparison:
 
