@@ -1,6 +1,6 @@
 # Biff-Electric example
 
-Example of using [Electric](https://github.com/hyperfiddle/electric) with Biff.
+Example of using [Electric] with [Biff].
 
 This fork has been modified to use [electric-hiccup]. See [app.cljc].
 
@@ -12,6 +12,11 @@ Other implementations of [app.cljc] for comparison:
 
 * The original: [app.cljc][biff-electric app.cljc] from [biff-electric].
 * A htmx version: [app.clj][starter/src/com/example/app.clj] from the main [biff] repo.
+
+## Project status.
+
+This project uses an older version of [Electric] and [Biff]. It isn't recommended to use this as the basis for a new project.
+See [electric-multi-client-app] for a simple [electric-hiccup] starter app.
 
 ## Inherited README information:
 
@@ -25,6 +30,7 @@ manually apply the changes in this project's latest commit. This ensures that
 your project will be created with the latest version of Biff—this repo won't
 necessarily be upgraded to future Biff releases.
 
+[Electric]: https://github.com/hyperfiddle/electric
 [electric-hiccup]:https://github.com/milelo/electric-hiccup
 [app.cljc]: /src/com/biffweb/examples/electric/app.cljc
 [biff-electric]: https://github.com/jacobobryant/biff-electric
@@ -33,3 +39,4 @@ necessarily be upgraded to future Biff releases.
 [starter/src/com/example/app.clj]: https://github.com/jacobobryant/biff/blob/28afb31cfcafc59f8e60ad32066ac0bb58691f7c/starter/src/com/example/app.clj
 [Tailwind CSS IntelliSense]: https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss
 [tailwindcss]: https://tailwindcss.com
+[electric-multi-client-app]: https://github.com/milelo/electric-multi-client-app
